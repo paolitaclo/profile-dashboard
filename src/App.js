@@ -1,30 +1,78 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import axios from 'axios';
 
 import ProfileList from './components/profile-list/profile_list';
 import ProfileForm from './components/profile-form/profile_form';
 import Navbar from './components/nav-bar/nav_bar';
-import DATA from './data';
+import LogInForm from './components/logIn-form/logIn_form';
 
 export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: DATA
-    }
+      profiles: [],
+      loggedUser: undefined,
+      page: 'profiles',
+    };
+    // this.loadProfileFromServer = this.loadProfileFromServer.bind(this);
+  }
+
+  loadProfileFromServer = () => {
+    return axios.get('http://localhost:3001/api/users')
+      .then(res => this.setState({ profiles: res.data })
+    );
+  }
+
+
+  logIn = (event, username) => {
+    event.preventDefault();
+    console.log(event);
+    console.log('this is this.state.username: ', this.state.username);
+    return axios
+    .get('http://localhost:3001/api/users')
+    .then((res) => {
+      // let arr = res.data;
+      console.log(res.data);
+      let filtered = res.data.filter((obj) => obj.username === username);
+      console.log('filtered:', filtered);
+      if (filtered.length === 1) {
+        this.setState({ loggedUser: filtered[0], page: 'profiles' });
+        console.log(this.state.loggedUser);
+        // return <ProfileList />;
+      }
+    });
+  }
+
+  componentDidMount() {
+    console.log('componentDiMount');
+    this.loadProfileFromServer().then((response) => {
+      console.log(response);
+    });
+  }
+
+  setPage = (page) =>{
+    console.log('page: ', page);
+    this.setState({ page });
   }
 
   render() {
+    let currentPage;
+    switch (this.state.page) {
+      case 'profiles':
+        currentPage = <ProfileList profiles={this.state.profiles}/>;
+        break;
+      case 'edit':
+      currentPage = <ProfileForm loggedUser={this.state.loggedUser} />;
+      break;
+      case 'login':
+      currentPage = <LogInForm onSubmit={this.logIn}/>;
+    }
+
     return (
-      <Router>
-        <div>
-          <Route exact path="/" component={Navbar} />
-          <Route exact path="/" render={() => <ProfileList data={DATA} />} />
-          <Route exact path="/update_form" component={Navbar} />
-          <Route exact path="/update_form" component={ProfileForm} />
-        </div>
-      </Router>
+      <div>
+        <Navbar loggedUser={this.state.loggedUser} setPage={this.setPage}/>
+        {currentPage}
+      </div>
     )
   }
 }
-// <Route render={() => <ProfileList data={this.state.data} />}>

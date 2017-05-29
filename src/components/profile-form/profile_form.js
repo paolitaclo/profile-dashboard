@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
+// import { Link } from 'react-router-dom';
 
 const ProfileForm = () => {
   return (
@@ -22,7 +22,7 @@ const ProfileForm = () => {
             <div className="form-group">
               <label className="col-sm-2 control-label">Describe yourself</label>
               <div className="col-sm-10">
-                <textarea class="form-control" rows="10" cols="82"></textarea>
+                <textarea className="form-control" rows="10" cols="82"></textarea>
               </div>
             </div>
             {/* <div className="form-group">

@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './profile_detail.css';
 
-const ProfileDetail = ({ user, description, imageUrl }) => {
+const ProfileDetail = ({ user, description, imageurl }) => {
   return (
     <div className="container">
       <div className="row">
         <div className="col-md-6 col-md-offset-3">
-          <img src={imageUrl} alt="Personal pic">
+          <img src={imageurl} alt="Personal pic">
           </img>
           <div>
             <h3>{user}</h3>

@@ -13,22 +13,6 @@ const router = express.Router();
 const PORT = process.env.API_PORT || 3001;
 
 mongoose.connect('mongodb://localhost:27017/profile_dashboard');
-// -----------
-
-// var MongoClient = require('mongodb').MongoClient,
-//   co = require('co'),
-//   assert = require('assert');
-//
-// co(function*() {
-//   // Connection URL
-//   var url = 'mongodb://localhost:27017/profile_dashboard';
-//   // Use connect method to connect to the Server
-//   var db = yield MongoClient.connect(url);
-//   // Close the connection
-//   db.close();
-// }).catch(function(err) {
-//   console.log(err.stack);
-// });
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -68,6 +52,22 @@ router.route('/users')
       res.json({ message: 'User information successfully added!' });
     });
   });
+
+router.route('/users/:user_id')
+ .put((req, res) => {
+   UsersInfo.findById(req.params.user_id, (err, information) => {
+     if (err) res.send(err);
+     
+     (req.body.user) ? information.user = req.body.user : null;
+     (req.body.description) ? information.description = req.body.description : null;
+     (req.body.imageUrl) ? information.imageurl = req.body.imageUrl : null;
+
+     information.save((err) => {
+       if (err) res.send(err);
+       res.json({ message: 'User Information has been updated' });
+     });
+   });
+ });
 
 app.use('/api', router);
 
