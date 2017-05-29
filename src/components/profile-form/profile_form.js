@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ProfileForm = ({ onSubmit, onChange }) => {
+const ProfileForm = ({ onSubmit, onChange, loggedUser }) => {
   let user, description, imageUrl;
   function onUserChange(event) {
     user = event.target.value;
@@ -20,19 +20,19 @@ const ProfileForm = ({ onSubmit, onChange }) => {
             <div className="form-group">
               <label htmlFor="nameInput" className="col-sm-2 control-label">Name</label>
               <div className="col-sm-10">
-                <input type="text" className="form-control" id="nameInput" placeholder="Name" onChange={onUserChange} />
+                <input type="text" className="form-control" id="nameInput" placeholder="Name" onChange={onUserChange} value={loggedUser.user}/>
               </div>
             </div>
             <div className="form-group">
               <label htmlFor="imgUrlInput" className="col-sm-2 control-label">Image Url</label>
               <div className="col-sm-10">
-                <input type="text" className="form-control" id="imgUrlInput" placeholder="Name" onChange={onImageUrlChange} />
+                <input type="text" className="form-control" id="imgUrlInput" placeholder="Name" onChange={onImageUrlChange} value={loggedUser.imageurl}/>
               </div>
             </div>
             <div className="form-group">
               <label className="col-sm-2 control-label">Describe yourself</label>
               <div className="col-sm-10">
-                <textarea className="form-control" rows="10" cols="82" onChange={onDescriptionChange}></textarea>
+                <textarea className="form-control" rows="10" cols="82" onChange={onDescriptionChange} value={loggedUser.description}></textarea>
               </div>
             </div>
             <div className="form-group">
