@@ -10,7 +10,7 @@ const app = express();
 const router = express.Router();
 
 
-const PORT = process.env.API_PORT || 3001;
+const PORT = process.env.PORT || 3001;
 
 mongoose.connect('mongodb://localhost:27017/profile_dashboard');
 
