@@ -38,8 +38,28 @@ export default class App extends Component {
       if (filtered.length === 1) {
         this.setState({ loggedUser: filtered[0], page: 'profiles' });
         console.log(this.state.loggedUser);
-        // return <ProfileList />;
       }
+    });
+  }
+
+  updateUserProfile = (event, user, description, imageUrl) => {
+    let information = {
+      user,
+      description,
+      imageUrl
+    }
+    event.preventDefault();
+    const userId = this.state.loggedUser._id;
+    console.log('info to edit: ', information);
+    console.log('this is userID ', userId);
+    return axios
+    .put(`http://localhost:3001/api/users/${userId}`, information)
+    .then((res) => {
+      this.loadProfileFromServer();
+      this.setState({page: 'profiles', loggedUser: res.data});
+    })
+    .catch(err => {
+      console.log(err);
     });
   }
 
@@ -62,7 +82,7 @@ export default class App extends Component {
         currentPage = <ProfileList profiles={this.state.profiles}/>;
         break;
       case 'edit':
-      currentPage = <ProfileForm loggedUser={this.state.loggedUser} />;
+      currentPage = <ProfileForm loggedUser={this.state.loggedUser} onSubmit={this.updateUserProfile}/>;
       break;
       case 'login':
       currentPage = <LogInForm onSubmit={this.logIn}/>;

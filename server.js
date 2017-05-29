@@ -8,7 +8,7 @@ const UsersInfo = require('./model/users_info');
 
 const app = express();
 const router = express.Router();
-// let db;
+
 
 const PORT = process.env.API_PORT || 3001;
 
@@ -57,14 +57,14 @@ router.route('/users/:user_id')
  .put((req, res) => {
    UsersInfo.findById(req.params.user_id, (err, information) => {
      if (err) res.send(err);
-     
+
      (req.body.user) ? information.user = req.body.user : null;
      (req.body.description) ? information.description = req.body.description : null;
      (req.body.imageUrl) ? information.imageurl = req.body.imageUrl : null;
 
      information.save((err) => {
        if (err) res.send(err);
-       res.json({ message: 'User Information has been updated' });
+       res.json(information);
      });
    });
  });
