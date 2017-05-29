@@ -14,7 +14,6 @@ const ProfileDetail = ({ user, description, imageurl }) => {
           <div>
             <h4>About myself</h4>
             <p>{description}</p>
-            {/* <button type="button" className="btn btn-primary">Edit</button> */}
           </div>
         </div>
       </div>

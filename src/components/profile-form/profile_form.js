@@ -20,19 +20,19 @@ const ProfileForm = ({ onSubmit, onChange, loggedUser }) => {
             <div className="form-group">
               <label htmlFor="nameInput" className="col-sm-2 control-label">Name</label>
               <div className="col-sm-10">
-                <input type="text" className="form-control" id="nameInput" placeholder="Name" onChange={onUserChange} value={loggedUser.user}/>
+                <input type="text" className="form-control" id="nameInput" placeholder="Name" onChange={onUserChange} defaultValue={loggedUser.user} />
               </div>
             </div>
             <div className="form-group">
               <label htmlFor="imgUrlInput" className="col-sm-2 control-label">Image Url</label>
               <div className="col-sm-10">
-                <input type="text" className="form-control" id="imgUrlInput" placeholder="Name" onChange={onImageUrlChange} value={loggedUser.imageurl}/>
+                <input type="text" className="form-control" id="imgUrlInput" placeholder="Name" onChange={onImageUrlChange} defaultValue={loggedUser.imageurl}/>
               </div>
             </div>
             <div className="form-group">
               <label className="col-sm-2 control-label">Describe yourself</label>
               <div className="col-sm-10">
-                <textarea className="form-control" rows="10" cols="82" onChange={onDescriptionChange} value={loggedUser.description}></textarea>
+                <textarea className="form-control" rows="10" cols="82" onChange={onDescriptionChange} defaultValue={loggedUser.description}></textarea>
               </div>
             </div>
             <div className="form-group">

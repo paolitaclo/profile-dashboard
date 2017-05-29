@@ -14,7 +14,6 @@ export default class App extends Component {
       loggedUser: undefined,
       page: 'profiles',
     };
-    // this.loadProfileFromServer = this.loadProfileFromServer.bind(this);
   }
 
   loadProfileFromServer = () => {
@@ -26,18 +25,13 @@ export default class App extends Component {
 
   logIn = (event, username) => {
     event.preventDefault();
-    console.log(event);
-    console.log('this is this.state.username: ', this.state.username);
     return axios
     .get('http://localhost:3001/api/users')
     .then((res) => {
-      // let arr = res.data;
-      console.log(res.data);
       let filtered = res.data.filter((obj) => obj.username === username);
       console.log('filtered:', filtered);
       if (filtered.length === 1) {
         this.setState({ loggedUser: filtered[0], page: 'profiles' });
-        console.log(this.state.loggedUser);
       }
     });
   }
@@ -50,8 +44,6 @@ export default class App extends Component {
     }
     event.preventDefault();
     const userId = this.state.loggedUser._id;
-    console.log('info to edit: ', information);
-    console.log('this is userID ', userId);
     return axios
     .put(`http://localhost:3001/api/users/${userId}`, information)
     .then((res) => {
@@ -64,14 +56,10 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-    console.log('componentDiMount');
-    this.loadProfileFromServer().then((response) => {
-      console.log(response);
-    });
+    this.loadProfileFromServer();
   }
 
   setPage = (page) =>{
-    console.log('page: ', page);
     this.setState({ page });
   }
 
