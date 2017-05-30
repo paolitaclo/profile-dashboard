@@ -21,6 +21,7 @@
   "devDependencies": {
   },
   "scripts": {
+    "start-server": "node server.js",
     "start": "nreact-scripts start",
     "start-dev": "nf start -p 3000",
     "build": "react-scripts build",

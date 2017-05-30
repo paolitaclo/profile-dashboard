@@ -10,10 +10,10 @@ const app = express();
 const router = express.Router();
 
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 8080;
+const MONGO_URL = process.env.MONGODB_URI || 'mongodb://localhost:27017/profile_dashboard';
 
-mongoose.connect('mongodb://paolacl:1VM7#%B!txp@ds155961.mlab.com:55961/heroku_hh37dh4b');
-// mongoose.connect('mongodb://localhost:27017/profile_dashboard');
+mongoose.connect(MONGO_URL);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
