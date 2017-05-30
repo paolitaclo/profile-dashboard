@@ -6,6 +6,8 @@ import ProfileForm from './components/profile-form/profile_form';
 import Navbar from './components/nav-bar/nav_bar';
 import LogInForm from './components/logIn-form/logIn_form';
 
+const SERVER = 'https://profiles-dashboard.herokuapp.com:57096';
+
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -17,7 +19,7 @@ export default class App extends Component {
   }
 
   loadProfileFromServer = () => {
-    return axios.get('api/users')
+    return axios.get(`${SERVER}/api/users`)
       .then(res => this.setState({ profiles: res.data })
     );
   }
@@ -26,10 +28,9 @@ export default class App extends Component {
   logIn = (event, username) => {
     event.preventDefault();
     return axios
-    .get('api/users')
+    .get(`${SERVER}/api/users`)
     .then((res) => {
       let filtered = res.data.filter((obj) => obj.username === username);
-      console.log('filtered:', filtered);
       if (filtered.length === 1) {
         this.setState({ loggedUser: filtered[0], page: 'profiles' });
       }
@@ -45,7 +46,7 @@ export default class App extends Component {
     event.preventDefault();
     const userId = this.state.loggedUser._id;
     return axios
-    .put(`api/users/${userId}`, information)
+    .put(`${SERVER}/api/users/${userId}`, information)
     .then((res) => {
       this.loadProfileFromServer();
       this.setState({page: 'profiles', loggedUser: res.data});

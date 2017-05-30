@@ -12,8 +12,8 @@ const router = express.Router();
 
 const PORT = process.env.PORT || 3001;
 
+mongoose.connect('mongodb://paolacl:1VM7#%B!txp@ds155961.mlab.com:55961/heroku_hh37dh4b');
 // mongoose.connect('mongodb://localhost:27017/profile_dashboard');
-mongoose.connect('mongodb://heroku_hh37dh4b:2qns220hetn0ttmhsi97vkvue5@ds155961.mlab.com:55961/heroku_hh37dh4b');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
