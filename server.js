@@ -73,5 +73,5 @@ router.route('/users/:user_id')
 app.use('/api', router);
 
 app.listen(PORT, () => {
-  console.log(`api running on port ${PORT}`);
+  console.log(`API running on port ${PORT}`);
 });
