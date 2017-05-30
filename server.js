@@ -10,7 +10,7 @@ const app = express();
 const router = express.Router();
 
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 3001;
 const MONGO_URL = process.env.MONGODB_URI || 'mongodb://localhost:27017/profile_dashboard';
 
 mongoose.connect(MONGO_URL);
@@ -71,6 +71,8 @@ router.route('/users/:user_id')
  });
 
 app.use('/api', router);
+
+app.use(express.static('public'));
 
 app.listen(PORT, () => {
   console.log(`API running on port ${PORT}`);

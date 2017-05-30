@@ -6,7 +6,7 @@ import ProfileForm from './components/profile-form/profile_form';
 import Navbar from './components/nav-bar/nav_bar';
 import LogInForm from './components/logIn-form/logIn_form';
 
-const SERVER = '';
+const SERVER = 'http://localhost:3100';
 
 export default class App extends Component {
   constructor(props) {
