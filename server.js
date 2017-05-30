@@ -50,7 +50,7 @@ router.route('/users')
 
     information.save((err) => {
       if (err) res.send(err);
-      res.json({ message: 'User information successfully added!' });
+      res.json({ message: 'User information successfully added.' });
     });
   });
 
