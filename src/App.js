@@ -6,7 +6,7 @@ import ProfileForm from './components/profile-form/profile_form';
 import Navbar from './components/nav-bar/nav_bar';
 import LogInForm from './components/logIn-form/logIn_form';
 
-const SERVER = 'https://profiles-dashboard.herokuapp.com:57096';
+const SERVER = '';
 
 export default class App extends Component {
   constructor(props) {
