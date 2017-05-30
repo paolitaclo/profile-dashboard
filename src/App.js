@@ -17,7 +17,7 @@ export default class App extends Component {
   }
 
   loadProfileFromServer = () => {
-    return axios.get('http://localhost:3001/api/users')
+    return axios.get('api/users')
       .then(res => this.setState({ profiles: res.data })
     );
   }
@@ -26,7 +26,7 @@ export default class App extends Component {
   logIn = (event, username) => {
     event.preventDefault();
     return axios
-    .get('http://localhost:3001/api/users')
+    .get('api/users')
     .then((res) => {
       let filtered = res.data.filter((obj) => obj.username === username);
       console.log('filtered:', filtered);
@@ -45,7 +45,7 @@ export default class App extends Component {
     event.preventDefault();
     const userId = this.state.loggedUser._id;
     return axios
-    .put(`http://localhost:3001/api/users/${userId}`, information)
+    .put(`api/users/${userId}`, information)
     .then((res) => {
       this.loadProfileFromServer();
       this.setState({page: 'profiles', loggedUser: res.data});
